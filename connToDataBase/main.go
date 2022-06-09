@@ -1,41 +1,29 @@
 package main
 
 import (
-	"fmt"
-	"strings"
+	"connToDatabase/conf"
+	"connToDatabase/datasource"
 
-	"connToDatabase/models"
+	"connToDatabase/route"
+	"flag"
 
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
+	"github.com/kataras/iris/v12"
 )
 
-//数据库配置
-const (
-	userName = "root"
-	password = "123456"
-	ip       = "127.0.0.1"
-	port     = "3306"
-	dbName   = "question"
-)
-
-//注意方法名大写，就是public
-func InitDB() {
-	//构建连接："用户名:密码@tcp(IP:端口)/数据库?charset=utf8"
-	path := strings.Join([]string{userName, ":", password, "@tcp(", ip, ":", port, ")/", dbName, "?charset=utf8"}, "")
-
-	db, err := gorm.Open(mysql.Open(path), &gorm.Config{})
-
-	if err != nil {
-		fmt.Println("failed to connnect success")
-	}
-
-	db.AutoMigrate(&models.User{})
-	fmt.Println("connnect success")
-
+func newApp() *iris.Application {
+	app := iris.New()
+	app.Configure(iris.WithOptimizations)
+	app.AllowMethods(iris.MethodOptions)
+	return app
 }
 
 func main() {
-
-	InitDB()
+	datasource.InitDB()
+	flag.Parse()
+	app := newApp()
+	route.InitRouter(app)
+	err := app.Run(iris.Addr(":"+conf.Sysconfig.Port), iris.WithoutServerError(iris.ErrServerClosed))
+	if err != nil {
+		panic(err)
+	}
 }

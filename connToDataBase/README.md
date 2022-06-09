@@ -18,11 +18,15 @@ go get -u gorm.io/gorm
 go get -u gorm.io/driver/mysql
 ```
 
+安装iris，iris是一个web框架，关于iris的更多可以参考[这里](https://www.iris-go.com/docs/#/)
+
+```go
+go get github.com/kataras/iris/v12@master
+```
+
 执行go mod tidy，它可以引用项目需要的依赖增加到go.mod文件，也可以去掉go.mod文件中项目不需要的依赖。
 
 ```go
 go mod tidy
 ```
-
-
 
