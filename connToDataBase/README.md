@@ -5,12 +5,6 @@
 
 #### 快速开始
 
-安装数据库驱动
-
-```go
-go get -u github.com/go-sql-driver/mysql
-```
-
 初始化模块
 
 ```go
