@@ -10,7 +10,8 @@ package packagename
 当前目录下的go.mod用来管理moduleAndPackage这个项目，整个项目到架构如下
 
 └─moduleAndPackage
-    └─object
+
+​	└─object
 
 ​			└─apple.go			    
 
