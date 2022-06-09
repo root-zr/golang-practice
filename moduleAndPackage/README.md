@@ -9,7 +9,7 @@ package packagename
 
 当前目录下的go.mod用来管理moduleAndPackage这个项目，整个项目到架构如下
 
-![](img/img001.jpg)
+![](/img/img001.jpg)
 
 我们可以看到go.mod和main.go处于同一级目录下，当main.go中要调用apple.go中的函数时，需要用import语句声明该函数所处的项目位置和包的名字。
 
